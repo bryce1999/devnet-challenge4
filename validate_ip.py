@@ -1,4 +1,4 @@
-def is_valid_octet(octet : str) -> bool:
+def is_valid_octet(octet: str) -> bool:
     """
     Validates a given octet.
 
@@ -7,30 +7,39 @@ def is_valid_octet(octet : str) -> bool:
     """
     try:
         int(octet)
-        return int(octet) >= 0 and int(octet) <= 255
+        return 0 <= int(octet) <= 255
 
     except ValueError:
-        return False #The octet contained somthing other than a number.
+        return False  # The octet contained something other than a number
 
-def is_valid_address(addr : str) -> bool:
+
+def is_valid_address(address: str) -> bool:
     """
     Validates a given address
 
     Return: True if the address has 4 valid octets, False otherwise.
     """
-    octets = addr.split('.')
+    octets = address.split('.')
+
     if not len(octets) == 4:
         return False
+
     for octet in octets:
+
         if not is_valid_octet(octet):
             return False
+
     return True
+
+
 def main():
     """
     The main loop
     """
     while True:
+
         address = input("Enter an ip address (X to exit): ")
+
         if address.lower() == 'x':
             break
         elif is_valid_address(address):
@@ -38,4 +47,6 @@ def main():
         else:
             print("Not a valid address")
 
-if __name__ == '__main__': main()
+
+if __name__ == '__main__':
+    main()
